@@ -1,41 +1,23 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+def product_except_self(nums):
+    n = len(nums)
+    answer = [0] * n
 
-vector<int> productExceptSelf(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> answer(n);
+    for i in range(n):
+        product = 1
 
-    for (int i = 0; i < n; i++) {
-        int product = 1;
+        for j in range(n):
+            if i != j:
+                product *= nums[j]
 
-        for (int j = 0; j < n; j++) {
-            if (i != j) {
-                product *= nums[j];
-            }
-        }
+        answer[i] = product
 
-        answer[i] = product;
-    }
+    return answer
 
-    return answer;
-}
 
-int main() {
-    int n;
-    cin >> n;
+n = int(input())
+nums = list(map(int, input().split()))
 
-    vector<int> nums(n);
+result = product_except_self(nums)
 
-    for (int i = 0; i < n; i++) {
-        cin >> nums[i];
-    }
-
-    vector<int> result = productExceptSelf(nums);
-
-    for (int i = 0; i < n; i++) {
-        cout << result[i] << " ";
-    }
-
-    return 0;
-}
+for x in result:
+    print(x, end=" ")

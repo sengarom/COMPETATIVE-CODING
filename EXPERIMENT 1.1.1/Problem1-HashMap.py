@@ -1,43 +1,21 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <cmath>
+def contains_nearby_duplicate(nums, k):
+    m = {}  # Store last index of each number
 
-using namespace std;
+    for i in range(len(nums)):
+        n = nums[i]
 
-bool containsNearbyDuplicate(vector<int>& nums, int k) {
-    unordered_map<int, int> m;
+        # Check if duplicate is within k distance
+        if n in m and abs(i - m[n]) <= k:
+            return True
 
-    for (int i = 0; i < nums.size(); i++) {
-        int n = nums[i];
+        m[n] = i  # Update latest index
 
-        if (m.count(n) && abs(i - m[n]) <= k) {
-            return true;
-        }
+    return False
 
-        m[n] = i;
-    }
 
-    return false;
-}
+size = int(input())  # Read array size
+nums = list(map(int, input().split()))  # Read array
+k = int(input())  # Read allowed distance
 
-int main() {
-    int size;
-    cin >> size;
-
-    vector<int> nums(size);
-
-    for (int i = 0; i < size; i++) {
-        cin >> nums[i];
-    }
-
-    int k;
-    cin >> k;
-
-    if (containsNearbyDuplicate(nums, k))
-        cout << "true";
-    else
-        cout << "false";
-
-    return 0;
-}
+# Print result
+print("true" if contains_nearby_duplicate(nums, k) else "false")
