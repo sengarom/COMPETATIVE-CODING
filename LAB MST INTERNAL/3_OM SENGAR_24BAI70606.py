@@ -1,15 +1,18 @@
-s = input("Enter a string: ").strip()
+#OM SENGAR- UID - 24BAI70606 SECTION - 24AIT-NTPP-2
+#LEET CODE PROBLEM - 3 - LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS
+
+
+s = input("Enter a string:").strip()
 n = len(s)
-max_length = 0
-char_set = set()
-left = 0
-
+maxlength = 0
+charset = set()
 for right in range(n):
-    while s[right] in char_set:
-        char_set.remove(s[left])
-        left += 1
-
-    char_set.add(s[right])
-    max_length = max(max_length, right - left + 1)
-
-print(max_length)
+    if s[right] not in charset:
+        charset.add(s[right])
+        maxlength = max(maxlength, right - left + 1)
+    else:
+        while s[right] in charset:
+            charset.remove(s[left])
+            left += 1
+        charset.add(s[right])
+print(maxlength)
